@@ -1,6 +1,10 @@
-import { Image,Button,Upload, Modal,message } from 'antd';
+// eslint-disable-next-line max-classes-per-file
+import { Skeleton,Button,Upload, Modal,message,PageHeader, Descriptions,Comment, Avatar, Form, List, Input } from 'antd';
 import { PlusOutlined,PoweroffOutlined } from '@ant-design/icons';
 import axios from 'axios'
+
+
+
 
 // eslint-disable-next-line no-undef
 class PicturesWall extends React.Component {
@@ -9,10 +13,6 @@ class PicturesWall extends React.Component {
     previewImage: '',
     previewTitle: '',
     fileList: [
-      {
-        "status": "",
-        "url":   "",
-      }
     ],
   };
 
@@ -98,7 +98,6 @@ class PicturesWall extends React.Component {
 // eslint-disable-next-line camelcase
 const peature_url = new Array(0);
 
-
 // eslint-disable-next-line no-undef
 class App extends React.Component {
   getPeatureUrl(){
@@ -127,6 +126,7 @@ class App extends React.Component {
       const newLoadings = [...loadings];
       newLoadings[index] = true;
       this.getPeatureUrl()
+      window.location.href="http://localhost:8000/GetSimilar"
       return {
         loadings: newLoadings,
       };
@@ -135,7 +135,6 @@ class App extends React.Component {
       this.setState(({ loadings }) => {
         const newLoadings = [...loadings];
         newLoadings[index] = false;
-
         return {
           loadings: newLoadings,
         };
@@ -160,47 +159,45 @@ class App extends React.Component {
   }
 }
 
-function ImageDemo() {
-  return (
-    <Image.PreviewGroup>
-      <Image
-        width={300}
-        height={500}
-        src={peature_url[0]}
-      />
-      <Image
-        width={300}
-        height={500}
-        src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-      />
-      <Image
-        width={300}
-        height={500}
-        src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-      />
-      <Image
-        width={300}
-        height={500}
-        src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-      />
-    </Image.PreviewGroup>
-  );
-}
+
+
+
 
 export default () => {
   return(
     <div>
-          <div>
+      <div>
+        <div className="site-page-header-ghost-wrapper">
+          <PageHeader
+            ghost={false}
+            onBack={() => window.history.back()}
+            title="服装识别系统"
+            subTitle="通过上传服装图片，在图片库中寻找相类似的衣服"
+          >
+            <Descriptions size="small" column={3}>
+              <Descriptions.Item label="Created">组长:卢桦茵   组员:李炜柯 李夏瑶</Descriptions.Item>
+              <Descriptions.Item label="Association">
+                <a>18级大数据2班</a>
+              </Descriptions.Item>
+              <Descriptions.Item label="Creation Time">2021-05-03</Descriptions.Item>
+              <Descriptions.Item label="Effective Time">2021-06-15</Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+        </div>
+      </div>
+      <div style={{ width:'100px',height:'100px'}}></div>
+    <div style={{ padding: '0 50px' ,textAlign :'center',width:'1500px',height:'500px'}}>
+          <div >
           <PicturesWall />
           </div>
       <div>
         <App />
       </div>
-      <div>
-          <div>
-            <ImageDemo/>
-          </div>
+      <div style={{ width:'100px',height:'100px'}}></div>
+      <div style={{ textAlign :'center',width:'100%',height:'250px'}}>
+        <Skeleton active />
       </div>
+    </div>
     </div>
   )
 }
