@@ -79,7 +79,7 @@ class PicturesWall extends React.Component {
           fileList={fileList}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
-          customRequest={this.upload}
+          t p={this.upload}
         >
           {fileList.length >= 1 ? null : uploadButton}
         </Upload>

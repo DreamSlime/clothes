@@ -4,7 +4,7 @@ import { PlusOutlined,PoweroffOutlined } from '@ant-design/icons';
 import axios from 'axios'
 
 
-
+let uploadfile = "";
 
 // eslint-disable-next-line no-undef
 class PicturesWall extends React.Component {
@@ -44,6 +44,7 @@ class PicturesWall extends React.Component {
   };
 
   upload = (fileObj) => {
+    uploadfile = fileObj.file.name
     const formData = new FormData()
     formData.append('file', fileObj.file)
     formData.append('type', fileObj.file.type)
@@ -101,7 +102,7 @@ const peature_url = new Array(0);
 // eslint-disable-next-line no-undef
 class App extends React.Component {
   getPeatureUrl(){
-    axios.post('/similar', )
+    axios.post(`/similar/${uploadfile}`, )
       .then(res => {
         const { filenames } = res.data
         // eslint-disable-next-line react/no-direct-mutation-state
